@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler ;
@@ -122,7 +122,7 @@ public class MyContentHandler implements ContentHandler{
 				try {						
 					date = this.sdf.parse(s);
 				} catch (ParseException e) {					
-					logger.warning(e.getMessage());
+					logger.warn(e.getMessage());
 				}
 				
 				it.setDate(date);

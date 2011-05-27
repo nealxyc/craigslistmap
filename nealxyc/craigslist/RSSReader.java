@@ -31,7 +31,6 @@ public class RSSReader {
 		} catch (SAXException e) {
 			logger.warn(e.getMessage());
 		}
-		
 	}
 	
 	public ArrayList<Item> parse(InputStream is) throws IOException{
@@ -64,10 +63,10 @@ public class RSSReader {
 	}
 	
 	/**
-	 * ´ÓInputStreamÕÒµ½²¢·µ»ØaddressĞÅÏ¢¡£²ÉÓÃºÜ¼òµ¥µÄ¹Ø¼ü×Ö²éÕÒ·¨¡£
-	 * @param is ÊäÈëÔ´
-	 * @return String ÕÒ²»µ½Ôò·µ»Ø¿Õ×Ö·û´®
-	 * @throws IOException Èç¹û·¢ÉúIOÒì³£
+	 * ä»InputStreamæ‰¾åˆ°å¹¶è¿”å›addressä¿¡æ¯ã€‚é‡‡ç”¨å¾ˆç®€å•çš„å…³é”®å­—æŸ¥æ‰¾æ³•ã€‚
+	 * @param is è¾“å…¥æº
+	 * @return String æ‰¾ä¸åˆ°åˆ™è¿”å›ç©ºå­—ç¬¦ä¸²
+	 * @throws IOException å¦‚æœå‘ç”ŸIOå¼‚å¸¸
 	 */
 	public String parseHtml(InputStream is)throws IOException{	
 		
