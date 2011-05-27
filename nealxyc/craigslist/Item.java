@@ -20,6 +20,7 @@ public class Item {
 		setAddress(item.getAddress());
 		setDate(item.getDate());
 		
+		
 	}
 	/**
 	 * @param link the link to set
@@ -100,9 +101,9 @@ public class Item {
 	 * @param l
 	 * @return Null if not found in database
 	 */
-	public static Item getByLink(String l){
-		
-	}
+//	public static Item getByLink(String l){
+//		
+//	}
 	
 	
 }
