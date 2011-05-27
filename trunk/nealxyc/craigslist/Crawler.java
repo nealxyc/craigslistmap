@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
+
 public class Crawler {
 
 	private static Logger logger = Logger.getLogger(Crawler.class.getName());
@@ -34,7 +35,7 @@ public class Crawler {
 		try{
 			if( pageLink != null && !pageLink.equals("") ){
 				
-				//Ϊ��sfbay���������ĵ�
+				//为了sfbay以外的区域改的
 				area = readArea(pageLink);
 				
 				java.net.URL url3 = new URL(pageLink);		
@@ -61,31 +62,7 @@ public class Crawler {
 				InputStream is = new BufferedInputStream(conn.getInputStream());				
 				itemList = rr.parse(is);
 				
-//				if( itemList != null ){
-//					for( Item mii : itemList){
-//						JSONObject it = new JSONObject();
-//						
-//						it.put("link", mii.getLink());
-//						it.put("address","null" );
-//						it.put("title", mii.getTitle());
-//						it.put("description", mii.getDescription());
-//						it.put("date", mii.getDate().getTime());
-//						arr.put(it);
-//					}
-//					
-//					obj.put("items", arr);
-//					if( arr.length() > 0){
-//						obj.put("success", true);
-//					}else{
-//						obj.put("success", false);
-//					}
-//					
-//				}
-				
-			}else{
-								
-				//obj.put("success", false);
-			}			
+			}		
 			
 		} catch(IOException ioe){
 			logger.warn(ioe.getMessage());
@@ -95,6 +72,35 @@ public class Crawler {
 		
 	}
 	
+	/**
+	 * Returns the address information on an item page. 
+	 * @param pageLink
+	 * @return The address. "" if not found.
+	 */
+	public static String fetchAddr(String pageLink){
+		
+		
+		String addr = "" ;
+		RSSReader rr = new RSSReader();
+		
+		try{
+			java.net.URL url2 = new URL(pageLink);		
+			HttpURLConnection conn2 = (HttpURLConnection)url2.openConnection() ;
+			conn2.setRequestMethod("GET");						
+			conn2.connect();
+			InputStream is2 = new BufferedInputStream(conn2.getInputStream());
+			
+			//如果无法查找到address，则返回值为""
+			addr = rr.parseHtml(is2);
+			is2.close();
+			
+			
+		}catch(IOException ioe){
+			logger.warn(ioe.getMessage());
+		}	
+		
+		return addr ;
+	}
 
 	
 	/**

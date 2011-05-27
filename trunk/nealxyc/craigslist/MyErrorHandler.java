@@ -1,6 +1,6 @@
 package nealxyc.craigslist;
 
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
@@ -12,20 +12,20 @@ public class MyErrorHandler implements ErrorHandler{
 
 	public void error(SAXParseException e) throws SAXException {
 		// TODO Auto-generated method stub
-		logger.warning(e.getMessage());
+		logger.warn(e.getMessage());
 		//System.out.println(e.getMessage());
 		
 	}
 
 	public void fatalError(SAXParseException e) throws SAXException {
 		// TODO Auto-generated method stub
-		logger.warning(e.getMessage());
+		logger.warn(e.getMessage());
 		//System.out.println(e.getMessage());
 	}
 
 	public void warning(SAXParseException e) throws SAXException {
 		// TODO Auto-generated method stub
-		logger.warning(e.getMessage());
+		logger.warn(e.getMessage());
 		//System.out.println(e.getMessage());
 	}
 
