@@ -1,6 +1,11 @@
 package nealxyc.craigslist;
 
 import java.util.Date;
+import java.util.List;
+
+import com.amazonaws.services.simpledb.model.Attribute;
+
+import database.SimpleDB;
 
 public class Item {
 
@@ -10,17 +15,25 @@ public class Item {
 	private String title ;	
 	private String description ;
 	
+	private Item() {
+		link = "";
+		address = "";
+		title = "";
+		this.description = "";
+	}
 	
 	public Item(String link){
+		this();
 		setLink(link);
 	}
 	
 	public Item(Item item){
+		this();
 		setLink(item.getLink());
 		setAddress(item.getAddress());
 		setDate(item.getDate());
-		
-		
+		this.setDescription(item.getDescription());
+		this.setTitle(item.getTitle());
 	}
 	/**
 	 * @param link the link to set
@@ -94,16 +107,37 @@ public class Item {
 	 * Store this Item into database. Insert or update.
 	 */
 	public void save(){
-		
+		if(date == null) date = new Date();
+		SimpleDB.GetInstance().AddAttribute(link, "address", address);
+		SimpleDB.GetInstance().AddAttribute(link, "title", title);
+		SimpleDB.GetInstance().AddAttribute(link, "description", description);
+		SimpleDB.GetInstance().AddAttribute(link, "date", "" + date.getTime());
+		SimpleDB.GetInstance().CommitTable("HouseInfo");
 	}
 	/**
 	 * Retreive the Item with a certain link from database.
 	 * @param l
 	 * @return Null if not found in database
 	 */
-//	public static Item getByLink(String l){
-//		
-//	}
-	
-	
+	public static Item getByLink(String l){
+		Item item = new Item(l);
+		List<Attribute> attributes;
+		try {
+			attributes = SimpleDB.GetInstance().GetItem(l, "HouseInfo").getAttributes();
+		} catch (NullPointerException e) {
+			return null;
+		}
+		for(Attribute a: attributes) {
+			if(a.getName().equals("address")) {
+				item.setAddress(a.getValue());
+			} else if(a.getName().equals("date")) {
+				item.setDate(new Date(Long.parseLong(a.getValue())));
+			} else if(a.getName().equals("title")) {
+				item.setTitle(a.getValue());
+			} else if(a.getName().equals("description")) {
+				item.setDescription(a.getValue());
+			}
+		}
+		return item;
+	}
 }
