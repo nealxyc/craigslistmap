@@ -108,10 +108,10 @@ public class Item {
 	 */
 	public void save(){
 		if(date == null) date = new Date();
-		SimpleDB.GetInstance().AddAttribute(link, "address", address);
-		SimpleDB.GetInstance().AddAttribute(link, "title", title);
-		SimpleDB.GetInstance().AddAttribute(link, "description", description);
-		SimpleDB.GetInstance().AddAttribute(link, "date", "" + date.getTime());
+		SimpleDB.GetInstance().AddItem(link, "address", address);
+		SimpleDB.GetInstance().AddItem(link, "title", title);
+		SimpleDB.GetInstance().AddItem(link, "description", description);
+		SimpleDB.GetInstance().AddItem(link, "date", "" + date.getTime());
 		SimpleDB.GetInstance().CommitTable("HouseInfo");
 	}
 	/**
