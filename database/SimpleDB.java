@@ -174,8 +174,8 @@ public class SimpleDB {
 	 * @return
 	 */
 	public List<Item> GetItems(String item, String table) {
-		String selectExpr = "Select * from '" + table + 
-			"' where itemName() in('" + item + "')";
+		String selectExpr = "Select * from " + table + 
+			" where itemName() in('" + item + "')";
 		SelectRequest request = new SelectRequest(selectExpr);
 		AmazonSimpleDB sdb = connect();
 		return sdb.select(request).getItems();
@@ -190,5 +190,32 @@ public class SimpleDB {
 	public Item GetItem(String item, String table) {
 		List<Item> items = GetItems(item, table);
 		return items.size() != 0? items.get(0) : null;
+	}
+	
+	public static class SimpleAttribute {
+		public String name;
+		public String value;
+		public SimpleAttribute(String name, String value) {
+			this.name = name;
+			this.value = value;
+		}
+		public String toString() {
+			return "<" + name + ": " + value + ">";
+		}
+	}
+	
+	/**
+	 * Get all attributes of an item
+	 * @param item
+	 * @param table
+	 * @return
+	 */
+	public List<SimpleAttribute> GetAttributes(String item, String table) {
+		Item i = GetItem(item, table);
+		List<SimpleAttribute> attrs = new ArrayList<SimpleAttribute>();
+		if(i != null)
+			for(Attribute attr: i.getAttributes())
+				attrs.add(new SimpleAttribute(attr.getName(), attr.getValue()));
+		return attrs;
 	}
 }
