@@ -2,6 +2,9 @@ package nealxyc.craigslist;
 
 import java.util.Date;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Item {
 
 	protected String link ;	
@@ -99,26 +102,47 @@ public class Item {
 		return description;
 	}
 	
-	/**
-	 * Store this Item into database. Insert or update. Must override.
-	 */
-	public void save(){
+//	/**
+//	 * Store this Item into database. Insert or update. Must override.
+//	 */
+//	public void save(){
+//		
+//	}
+//	
+//	/**
+//	 * Delete this Item from database. Must override.
+//	 */
+//	public void delete(){
+//		
+//	}
+//	/**
+//	 * Get the Item with a certain link from database. Must override.
+//	 * @param l
+//	 * @return Null if not found in database
+//	 */
+//	public static Item getByLink(String l){
+//		return null ;
+//	}
+	
+	public String toString(){
+		return toJSON().toString();
 		
 	}
 	
-	/**
-	 * Delete this Item from database. Must override.
-	 */
-	public void delete(){
+	public JSONObject toJSON(){
 		
-	}
-	/**
-	 * Get the Item with a certain link from database. Must override.
-	 * @param l
-	 * @return Null if not found in database
-	 */
-	public static Item getByLink(String l){
-		return null ;
+		JSONObject obj = new JSONObject();
+		try {
+			obj.put("link", getLink());
+			obj.put("address", getAddress());
+			obj.put("date", getDate().getTime());
+			obj.put("title", getTitle());
+			obj.put("description", getDescription());
+		} catch (JSONException e) {
+			
+		}
+		
+		return obj ;
 	}
 	
 
