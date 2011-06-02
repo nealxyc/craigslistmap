@@ -13,7 +13,7 @@ public class TestAddr {
 		
 		//String link = "http://sfbay.craigslist.org/sfc/apa/";
 		String link = "http://sfbay.craigslist.org/search/apa/sfc?query=&srchType=A&minAsk=&maxAsk=1100&bedrooms=";
-		ArrayList<Item> list = Crawler.fetchItemFromPage(link, "");
+		ArrayList<Item> list = Crawler.fetchItemFromPage(link, 0);
 		
 		System.out.println("==========");
 		System.out.println(list.size() + " results.");
@@ -30,9 +30,6 @@ public class TestAddr {
 			}
 		}
 		
-		
-		
-
 	}
 
 }

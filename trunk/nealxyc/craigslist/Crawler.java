@@ -11,7 +11,11 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-
+/**
+ * 
+ * @author Neal Xiong
+ * @version 0.1 
+ */
 public class Crawler {
 
 	private static Logger logger = Logger.getLogger(Crawler.class.getName());
@@ -23,7 +27,7 @@ public class Crawler {
 	 * @param fromIndex
 	 * @return
 	 */
-	public static ArrayList<Item> fetchItemFromPage(String pageLink,  String fromIndex){
+	public static ArrayList<Item> fetchItemFromPage(String pageLink,  int fromIndex){
 		
 		RSSReader rr = new RSSReader();
 		ArrayList<Item> itemList = null ;
@@ -148,11 +152,11 @@ public class Crawler {
 	}
 	
 	
-	private static String reformRSSlink(String urlStr, boolean search, String fromIndex, String area) {
+	private static String reformRSSlink(String urlStr, boolean search, int fromIndex, String area) {
 		
 		if(urlStr != null && !urlStr.equals("")){
 			if( search ){
-				if(fromIndex != null && !fromIndex.equals("")){
+				if(fromIndex > 0){
 					urlStr += "&s=" + fromIndex ;
 				}
 				
