@@ -1,11 +1,12 @@
-
 = API v0.1 =
 
 
 
 == Search ==
 http://craigslistmap.nealxyc.com/api/search
-*Parameters*
-  * url: 
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+
+ *Parameters*
+  Required
+  * url: the URL of search result from craigslist
+  Optional
+  * count: The number of results that will return in maximum. Default value is 25 if not specified.
