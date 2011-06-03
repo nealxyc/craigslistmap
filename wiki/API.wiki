@@ -12,7 +12,7 @@ http://craigslistmap.nealxyc.com/api/search
  Required
   * url: the URL of search result from craigslist
  Optional
-  * count: The number of results that will return in maximum. Default value is 25 if not specified.
+  * count: The maximum number of results that will be returned. Default value is 25 if not specified.
 *Return*
  An array of items. Item is in the following format.
  {{{
