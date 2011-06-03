@@ -3,10 +3,28 @@
 
 
 == Search ==
+{{{
 http://craigslistmap.nealxyc.com/api/search
+}}}
 
- *Parameters*
-  Required
+*Parameters*
+ Required
   * url: the URL of search result from craigslist
-  Optional
+ Optional
   * count: The number of results that will return in maximum. Default value is 25 if not specified.
+*Return*
+ An array of items. Item is in the following format.
+ {{{
+{
+"title":"String",
+"address":"String",
+"description":"String",
+"date":Integer,//The number of milliseconds since January 1, 1970, 00:00:00 GMT 
+ "url":"String"
+}
+}}}
+*Example*
+ 
+ {{{
+ http://craigslistmap.nealxyc.com/api/search?url=http%3A%2F%2Fsfbay.craigslist.org%2Fsfc%2Fapa%2F&count=25
+ }}}
