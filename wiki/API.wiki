@@ -28,3 +28,27 @@ http://craigslistmap.nealxyc.com/api/search
  {{{
  http://craigslistmap.nealxyc.com/api/search?url=http%3A%2F%2Fsfbay.craigslist.org%2Fsfc%2Fapa%2F&count=25
  }}}
+
+
+
+== Address ==
+{{{
+http://craigslistmap.nealxyc.com/api/address
+}}}
+
+*Parameters*
+ Required
+  * url: the URL of post from craigslist
+*Return*
+ Item is in the following format.
+ {{{
+{
+"address":"String",
+ "url":"String"
+}
+}}}
+*Example*
+ 
+ {{{
+ http://craigslistmap.nealxyc.com/api/address?url=http%3A%2F%2Fsfbay.craigslist.org%2Fsfc%2Fapa%2F2418119418.html
+ }}}
